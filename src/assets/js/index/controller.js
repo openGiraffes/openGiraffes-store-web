@@ -161,6 +161,7 @@ const appDetailsModal = {
     maintainers: document.getElementById('app-details-modal-app-maintainers'),
     dependencies: document.getElementById('app-details-modal-app-dependencies'),
     version: document.getElementById('app-details-modal-app-version'),
+    size: document.getElementById('app-details-modal-app-size'),
     type: document.getElementById('app-details-modal-app-type'),
     locales: document.getElementById('app-details-modal-app-locales'),
     has_ads: document.getElementById('app-details-modal-app-has_ads'),
@@ -319,16 +320,6 @@ appCardsContainerElement.onclick = function (e) {
           appDetailsModal.content.maintainers.innerText = 'Unknown'
         }
 
-        function separateArrayDependencies (depend) {
-          let separated = ''
-          const arrayLength = depend.length
-          for (const index in array) {
-            if (index + 1 < arrayLength) {
-              separated += array[index] + ' '
-            }
-          }
-          return separated
-        }
         if (appDetails.dependencies) {
           appDetailsModal.content.dependencies.innerHTML = ""
           if (typeof appDetails.dependencies.length > 0) {
@@ -348,7 +339,7 @@ appCardsContainerElement.onclick = function (e) {
               } else {
                 appDetailsModal.content.dependencies.innerHTML += '<a href="' + depend.url + '" target="_blank">' + depend.name + '</a>&nbsp;'
               }
-            });
+            })
           }
         } else {
           appDetailsModal.content.dependencies.innerText = '(None)'
@@ -402,16 +393,34 @@ appCardsContainerElement.onclick = function (e) {
 
         reloadAppRatings(appDetails.slug)
 
+        function getZipfileSize(url) {
+          let fileSize = ''
+          let xhr = new XMLHttpRequest()
+          xhr.open('HEAD', url, true)
+          xhr.onreadystatechange = function () {
+            if (this.readyState === this.DONE) {
+              if (this.status === 200) {
+                fileSize = xhr.getResponseHeader('Content-Length')
+                
+              }
+            }
+          }
+          xhr.send()
+          return fileSize
+        }
+
         if (appDetails.download.url) {
           appDetailsModal.buttons.download.classList.remove('is-hidden')
           appDownloadsModal.buttons.download.classList.remove('is-hidden')
           appDownloadsModal.buttons.download.setAttribute('data-app-download', appDetails.download.url)
           appDownloadsModal.buttons.download.setAttribute('data-app-appid', appDetails.slug)
+          appDetailsModal.content.size.innerText = getZipfileSize(appDetails.download.url)
           appDownloadsModal.content.qrcode.innerHTML = ''
           new QRCode(appDownloadsModal.content.qrcode, 'openkaios:' + appDetails.slug)
         } else {
           appDetailsModal.buttons.download.classList.add('is-hidden')
           appDownloadsModal.buttons.download.classList.add('is-hidden')
+          appDetailsModal.content.size.innerText = 'Unknown'
         }
 
         if (appDetails.website) {

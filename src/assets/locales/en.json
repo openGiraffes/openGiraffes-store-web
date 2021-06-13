@@ -26,6 +26,7 @@
         "maintainers": "Maintainer(s)",
         "dependencies": "Dependencies",
         "version": "Version",
+        "size": "Size",
         "type": "Type",
         "locales": "Languages",
         "Anti-features": "Anti-features",
