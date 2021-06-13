@@ -393,28 +393,12 @@ appCardsContainerElement.onclick = function (e) {
 
         reloadAppRatings(appDetails.slug)
 
-        function getZipfileSize(url) {
-          let fileSize = ''
-          let xhr = new XMLHttpRequest()
-          xhr.open('HEAD', url, true)
-          xhr.onreadystatechange = function () {
-            if (this.readyState === this.DONE) {
-              if (this.status === 200) {
-                fileSize = xhr.getResponseHeader('Content-Length')
-                
-              }
-            }
-          }
-          xhr.send()
-          return fileSize
-        }
-
         if (appDetails.download.url) {
           appDetailsModal.buttons.download.classList.remove('is-hidden')
           appDownloadsModal.buttons.download.classList.remove('is-hidden')
           appDownloadsModal.buttons.download.setAttribute('data-app-download', appDetails.download.url)
           appDownloadsModal.buttons.download.setAttribute('data-app-appid', appDetails.slug)
-          appDetailsModal.content.size.innerText = getZipfileSize(appDetails.download.url)
+          appDetailsModal.content.size.innerText = appDetails.size
           appDownloadsModal.content.qrcode.innerHTML = ''
           new QRCode(appDownloadsModal.content.qrcode, 'openkaios:' + appDetails.slug)
         } else {
