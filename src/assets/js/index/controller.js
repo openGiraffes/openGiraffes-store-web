@@ -393,12 +393,29 @@ appCardsContainerElement.onclick = function (e) {
 
         reloadAppRatings(appDetails.slug)
 
+        function getZipfileSize(url) {
+          let xhr = new XMLHttpRequest()
+          xhr.open('HEAD', "https://kaios.tri1.workers.dev?url=" + encodeURIComponent(url), true);
+          xhr.onreadystatechange = function () {
+            if (this.readyState === this.DONE) {
+              if (this.status === 200) {
+                appDetailsModal.content.size.innerText = (xhr.getResponseHeader("content-length") / 1024).toFixed(2) + ' KB'
+              } else if(this.status === 403) {
+                appDetailsModal.content.size.innerText = 'Error: 403'
+              } else if(this.status === 404) {
+                appDetailsModal.content.size.innerText = 'Error: 404'
+              }
+            }
+          }
+          xhr.send()
+        }
+
         if (appDetails.download.url) {
           appDetailsModal.buttons.download.classList.remove('is-hidden')
           appDownloadsModal.buttons.download.classList.remove('is-hidden')
           appDownloadsModal.buttons.download.setAttribute('data-app-download', appDetails.download.url)
           appDownloadsModal.buttons.download.setAttribute('data-app-appid', appDetails.slug)
-          appDetailsModal.content.size.innerText = appDetails.size
+          getZipfileSize(appDetails.download.url)
           appDownloadsModal.content.qrcode.innerHTML = ''
           new QRCode(appDownloadsModal.content.qrcode, 'openkaios:' + appDetails.slug)
         } else {
