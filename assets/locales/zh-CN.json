@@ -26,6 +26,7 @@
         "maintainers": "维护者",
         "dependencies": "依赖项",
         "version": "版本",
+        "size": "大小",
         "type": "类型",
         "locales": "语言",
         "Anti-features": "敏感特征",
