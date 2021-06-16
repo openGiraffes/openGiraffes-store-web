@@ -70,16 +70,16 @@
             WebStore on GitHub
           </a>
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link is-unselectable">
+            <a class="navbar-link is-unselectable" lang="en" data-lang-token="trans">
               Translations
             </a>
     
             <div class="navbar-dropdown">
-              <a class="navbar-item is-unselectable switch-locale" href="#" onclick="window.lang.change('zh-CN'); window.reloadData(); return false;">
+              <a class="navbar-item is-unselectable switch-locale" href="#" onclick="changeLocales('zh-CN')">
                 简体中文
               </a>
               <hr class="navbar-divider">
-              <a class="navbar-item is-unselectable switch-locale" href="#" onclick="window.lang.change('en'); window.reloadData(); return false;">
+              <a class="navbar-item is-unselectable switch-locale" href="#" onclick="changeLocales('en')">
                 English
               </a>
             </div>
@@ -463,6 +463,12 @@
         },
         allowCookieOverride: true
       });
+      function changeLocales(locale) {
+        window.lang.change(locale);
+        window.reloadData();
+        window.location.reload();
+        return false;
+      }
     </script>
   </body>
 </html>
