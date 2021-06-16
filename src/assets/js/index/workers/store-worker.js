@@ -18,7 +18,8 @@ onmessage = function () {
     categories: {
       all: {
         name: 'All apps',
-        icon: 'fas fa-store'
+        icon: 'fas fa-store',
+        locales:[{"zh-CN":"所有应用"}]
       }
     },
     apps: {

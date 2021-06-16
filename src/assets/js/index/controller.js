@@ -3,6 +3,7 @@
 let currentSelectedCategory = 'all'
 
 const StoreDbAPI = new StoreDatabaseAPI()
+const localesFromCookie = Cookies.get('langCookie')
 
 let isFirstInitCompleted = false
 let currentWebStoreVersion = ''
@@ -24,7 +25,13 @@ function generateReadableCategories (categories) {
   const rawCategories = []
   for (const index in categories) {
     const categoryRawName = categories[index]
-    const categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].name
+    //const categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].locales[0][localesFromCookie]
+    let categoryFriendlyName
+    if (localesFromCookie === 'en'){
+      categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].name
+    } else {
+      categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].locales[0][localesFromCookie]
+    }
     if (categoryFriendlyName) {
       rawCategories.push(categoryFriendlyName)
     } else {
@@ -843,7 +850,11 @@ function reloadData () {
       newCategoryTab.link.content.icon.icon.setAttribute('data-category-id', category)
       newCategoryTab.link.content.icon.container.appendChild(newCategoryTab.link.content.icon.icon)
 
-      newCategoryTab.link.content.text.innerText = data.categories[category].name
+      if (localesFromCookie === "en"){
+        newCategoryTab.link.content.text.innerText = data.categories[category].name
+      } else {
+        newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
+      }
       newCategoryTab.link.content.text.setAttribute('data-category-id', category)
       newCategoryTab.link.content.text.classList.add('category-link')
       newCategoryTab.link.container.appendChild(newCategoryTab.link.content.text)
