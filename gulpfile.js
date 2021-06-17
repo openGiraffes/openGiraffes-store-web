@@ -48,7 +48,7 @@ const FPATHS = {
     dest: BUILD_FOLDER
   },
   custom_info: {
-    src: [SOURCE_FOLDER + 'custom-info/*.html', SOURCE_FOLDER + 'custom-info/*.js'],
+    src: [SOURCE_FOLDER + 'custom-info/*.html', SOURCE_FOLDER + '*.js'],
     dest: BUILD_FOLDER + 'custom-info/'
   }
 }
