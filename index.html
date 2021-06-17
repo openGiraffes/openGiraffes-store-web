@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="assets/css/lib/animate.css">
     <link rel="stylesheet" href="assets/css/lib/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
+
+    <script src="assets/js/lib/jquery/jquery.min.js"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -31,60 +33,13 @@
     
       <div id="webstore-navbar" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item is-unselectable" href="#" target="_blank" lang="en" data-lang-token="Forums">
-            Forums
-          </a>
-          <a class="navbar-item is-unselectable" href="#" target="_blank" lang="en" data-lang-token="Chat">
-            Chat
-          </a>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link is-unselectable">
-              openKaiOS
-            </a>
-    
-            <div class="navbar-dropdown">
-              <a class="navbar-item is-unselectable" href="https://openkaios.top/" target="_blank" lang="en" data-lang-token="Home">
-                Home
-              </a>
-              <a class="navbar-item is-unselectable" href="https://docs.openkaios.top/" target="_blank" lang="en" data-lang-token="Documentation">
-                Documentation
-              </a>
-            </div>
-          </div>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link is-unselectable" lang="en" data-lang-token="App Databases">
-              App Databases
-            </a>
-    
-            <div class="navbar-dropdown">
-              <a class="navbar-item is-unselectable" href="https://github.com/openkaios/openkaios-store-db/tree/gh-pages" target="_blank">
-                GitHub
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item is-unselectable" href="#" target="_blank" lang="en" data-lang-token="Request apps">
-                Request apps
-              </a>
-            </div>
-          </div>
-          <a class="navbar-item is-unselectable" href="https://github.com/openkaios/openkaios-store-web" target="_blank">
-            WebStore on GitHub
-          </a>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link is-unselectable" lang="en" data-lang-token="trans">
-              Translations
-            </a>
-    
-            <div class="navbar-dropdown">
-              <a class="navbar-item is-unselectable switch-locale" href="#" onclick="changeLocales('zh-CN')">
-                简体中文
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item is-unselectable switch-locale" href="#" onclick="changeLocales('en')">
-                English
-              </a>
-            </div>
-          </div>
+          <script>
+            $.get("custom-info/navbar.html", function(r){
+                $(".navbar-start").append(r);
+            });
+          </script>
         </div>
+      </div>
 
         <div class="navbar-end">
           <div class="navbar-item">
@@ -118,7 +73,7 @@
             </div>
           </div>
         </div>
-      </div>
+      
     </nav>
 
     <section class="section">
@@ -437,9 +392,9 @@
       </div>
     </div>
 
-    <script src="assets/js/lib/jquery/jquery.min.js"></script>
     <script src="assets/js/lib/js.cookie.min.js"></script>
     <script src="assets/js/lib/jquery/jquery-lang.min.js"></script>
+    <script src="custom-info/load-locales.js"></script>
     <script src="assets/js/lib/bulma/bulma-toast.min.js" defer="defer"></script>
     <script src="assets/js/lib/bulma/bulma-modal.js" defer="defer"></script>
     <script src="assets/js/lib/qrcode.min.js" defer="defer"></script>
@@ -448,27 +403,5 @@
     <script src="assets/js/lib/dayjs/plugins/relativeTime.min.js" defer="defer"></script>
     <script src="assets/js/init.js" defer="defer"></script>
     <script src="assets/js/index/controller.js" defer="defer"></script>
-
-    <script>
-      var lang = new Lang();
-      lang.dynamic("en", "assets/locales/en.json");
-      lang.dynamic("zh-CN", "assets/locales/zh-CN.json");
-      lang.init({
-        defaultLang: "en",
-        currentLang: 'zh-CN',
-        cookie: {
-          name: 'langCookie',
-          expiry: 365,
-          path: '/'
-        },
-        allowCookieOverride: true
-      });
-      function changeLocales(locale) {
-        window.lang.change(locale);
-        window.reloadData();
-        window.location.reload();
-        return false;
-      }
-    </script>
   </body>
 </html>
