@@ -23,7 +23,7 @@ function changeLocales(locale) {
 }
 
 function changeLocalesWithURL() {
-    window.lang.change(getQueryVariable('locale'));
-    // window.reloadData();
+    lang.change(getQueryVariable('locale'));
+    // reloadData();
     return false;
 }
