@@ -1,5 +1,3 @@
-var lang = new Lang();
-
 // If you want to add more languages, please add a line here
 lang.dynamic("en", "assets/locales/en.json");
 lang.dynamic("zh-CN", "assets/locales/zh-CN.json");
