@@ -3,7 +3,6 @@
 let currentSelectedCategory = 'all'
 
 const StoreDbAPI = new StoreDatabaseAPI()
-const localesFromCookie = Cookies.get('langCookie')
 
 let isFirstInitCompleted = false
 let currentWebStoreVersion = ''
@@ -35,12 +34,12 @@ function generateReadableCategories (categories) {
   const rawCategories = []
   for (const index in categories) {
     const categoryRawName = categories[index]
-    //const categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].locales[0][localesFromCookie]
+    //const categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].locales[0][lang.currentLang]
     let categoryFriendlyName
-    if (localesFromCookie === 'en'){
+    if (lang.currentLang === 'en'){
       categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].name
     } else {
-      categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].locales[0][localesFromCookie]
+      categoryFriendlyName = StoreDbAPI.db.categories[categoryRawName].locales[0][lang.currentLang]
     }
     if (categoryFriendlyName) {
       rawCategories.push(categoryFriendlyName)
@@ -862,12 +861,10 @@ function reloadData () {
 
       newCategoryTab.link.content.text.innerText = ""
       
-      if (localesFromCookie === "en") {
+      if (lang.currentLang === "en") {
         newCategoryTab.link.content.text.innerText = data.categories[category].name
-      } else if (getQueryVariable("locale") === localesFromCookie) {
-        newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
-      } else if (localesFromCookie === lang.currentLang) {
-        newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
+      } else if (getQueryVariable("locale") === lang.currentLang) {
+        newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][lang.currentLang]
       }
       newCategoryTab.link.content.text.setAttribute('data-category-id', category)
       newCategoryTab.link.content.text.classList.add('category-link')
