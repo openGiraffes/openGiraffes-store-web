@@ -18,3 +18,9 @@ function changeLocales(locale) {
     window.reloadData();
     return false;
 }
+
+function changeLocalesWithURL() {
+    window.lang.change(getQueryVariable('locale'));
+    // window.reloadData();
+    return false;
+}
