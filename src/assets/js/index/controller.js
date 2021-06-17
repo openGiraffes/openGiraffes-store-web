@@ -866,7 +866,7 @@ function reloadData () {
         newCategoryTab.link.content.text.innerText = data.categories[category].name
       } else if (getQueryVariable("locale") === localesFromCookie) {
         newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
-      } else if (localesFromCookie === this.lang.currentLang) {
+      } else if (localesFromCookie === lang.currentLang) {
         newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
       }
       newCategoryTab.link.content.text.setAttribute('data-category-id', category)
