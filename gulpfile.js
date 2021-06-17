@@ -46,6 +46,10 @@ const FPATHS = {
   manifest: {
     src: SOURCE_FOLDER + 'openkaios.webmanifest',
     dest: BUILD_FOLDER
+  },
+  custom_info: {
+    src: [SOURCE_FOLDER + 'custom-info/*.html', SOURCE_FOLDER + 'custom-info/*.js'],
+    dest: BUILD_FOLDER + 'custom-info/'
   }
 }
 
@@ -123,11 +127,19 @@ function manifestTask () {
     .pipe(dest(FPATHS.manifest.dest))
 }
 
+function customInfoTask () {
+  return src(FPATHS.custom_info.src)
+    .pipe(plumber({ errorHandler: onErr }))
+    .pipe(minifyHTML())
+    .pipe(plumber.stop())
+    .pipe(dest(FPATHS.custom_info.dest))
+}
+
 function cleanBuildAll () {
   return rm([BUILD_FOLDER + '*', '!' + BUILD_FOLDER + 'CNAME'])
 }
 
-const DEFAULT_BUILD_TASKS = parallel(jsTask, jsMinTask, cssTask, cssMinTask, htmlTask, iconsTask, logosTask, localesTask, manifestTask)
+const DEFAULT_BUILD_TASKS = parallel(jsTask, jsMinTask, cssTask, cssMinTask, htmlTask, iconsTask, logosTask, localesTask, manifestTask, customInfoTask)
 
 exports.clean = cleanBuildAll
 
