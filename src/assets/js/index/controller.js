@@ -21,6 +21,16 @@ function separateArrayCommas (array) {
   return separated
 }
 
+function getQueryVariable(variable) {
+  const query = window.location.search.substring(1);
+  const vars = query.split("&");
+  for (let i=0;i<vars.length;i++) {
+          let pair = vars[i].split("=");
+          if(pair[0] == variable){return pair[1];}
+  }
+  return false;
+}
+
 function generateReadableCategories (categories) {
   const rawCategories = []
   for (const index in categories) {
@@ -854,8 +864,8 @@ function reloadData () {
       
       if (localesFromCookie === "en"){
         newCategoryTab.link.content.text.innerText = data.categories[category].name
-      } else {
-        newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
+      } else if (getQueryVariable("locale") === localesFromCookie){
+          newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
       }
       newCategoryTab.link.content.text.setAttribute('data-category-id', category)
       newCategoryTab.link.content.text.classList.add('category-link')

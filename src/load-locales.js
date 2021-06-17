@@ -18,6 +18,5 @@ lang.init({
 function changeLocales(locale) {
     window.lang.change(locale);
     window.reloadData();
-    setTimeout(() => {window.location.reload()}, 500);
     return false;
 }
