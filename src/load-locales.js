@@ -14,11 +14,11 @@ lang.init({
 });
 
 function changeLocales(locale) {
-    window.lang.change(locale);
-    if (lang.currentLang !== locale) {
-        window.lang.change(locale);
-    }
-    window.reloadData();
+    lang.change(locale);
+    // if (lang.currentLang !== locale) {
+    //     lang.change(locale);
+    // }
+    reloadData();
     return false;
 }
 
