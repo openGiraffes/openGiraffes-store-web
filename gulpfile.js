@@ -28,7 +28,7 @@ const FPATHS = {
     dest: BUILD_FOLDER + 'assets/css/'
   },
   html: {
-    src: SOURCE_FOLDER + '*.html',
+    src: [SOURCE_FOLDER + '*.html', SOURCE_FOLDER + '*.js'],
     dest: BUILD_FOLDER
   },
   icons: {
@@ -48,7 +48,7 @@ const FPATHS = {
     dest: BUILD_FOLDER
   },
   custom_info: {
-    src: [SOURCE_FOLDER + 'custom-info/*.html', SOURCE_FOLDER + '*.js'],
+    src: SOURCE_FOLDER + 'custom-info/*.html',
     dest: BUILD_FOLDER + 'custom-info/'
   }
 }
