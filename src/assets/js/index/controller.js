@@ -862,10 +862,12 @@ function reloadData () {
 
       newCategoryTab.link.content.text.innerText = ""
       
-      if (localesFromCookie === "en"){
+      if (localesFromCookie === "en") {
         newCategoryTab.link.content.text.innerText = data.categories[category].name
-      } else if (getQueryVariable("locale") === localesFromCookie){
-          newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
+      } else if (getQueryVariable("locale") === localesFromCookie) {
+        newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
+      } else if (localesFromCookie === this.lang.currentLang) {
+        newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][localesFromCookie]
       }
       newCategoryTab.link.content.text.setAttribute('data-category-id', category)
       newCategoryTab.link.content.text.classList.add('category-link')
