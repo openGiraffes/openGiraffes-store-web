@@ -15,6 +15,9 @@ lang.init({
 
 function changeLocales(locale) {
     window.lang.change(locale);
+    if (lang.currentLang !== locale) {
+        window.lang.change(locale);
+    }
     window.reloadData();
     return false;
 }
