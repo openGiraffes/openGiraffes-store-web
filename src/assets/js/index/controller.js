@@ -850,6 +850,8 @@ function reloadData () {
       newCategoryTab.link.content.icon.icon.setAttribute('data-category-id', category)
       newCategoryTab.link.content.icon.container.appendChild(newCategoryTab.link.content.icon.icon)
 
+      newCategoryTab.link.content.text.innerText = ""
+      
       if (localesFromCookie === "en"){
         newCategoryTab.link.content.text.innerText = data.categories[category].name
       } else {
