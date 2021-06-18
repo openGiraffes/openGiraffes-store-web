@@ -58,8 +58,9 @@
     </a>
 
     <script>
-      $.get("custom-info/translations.html", function(r){
-          $(".navbar-translations").append(r);
-      });
+        $.get("custom-info/translations.html", function (r) {
+            $(".navbar-translations").append(r);
+            lang.change(Cookies.get('categoryLocale'));
+        });
     </script>
 </div>

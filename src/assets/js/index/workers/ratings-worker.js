@@ -2,6 +2,12 @@ const WORKER_NAME = 'Ratings'
 
 importScripts('common.js')
 
+const bHackerRating = 'https://bhackers.uber.space/srs/v1'
+
+const openkaiosRating = 'https://liaronce.top'
+
+const RatingAPI = openkaiosRating
+
 const jsonHeader = {
   'Content-Type': 'application/json'
 }
@@ -21,7 +27,7 @@ onmessage = (e) => {
         wLog('log', 'Making request to download counts tracker.')
         const request = syncRequest({
           type: 'GET',
-          url: 'https://liaronce.top/download_counter/count/' + e.data.args.slug,
+          url: RatingAPI + '/download_counter/count/' + e.data.args.slug,
           timeout: 2000
         })
         if (request.success) {
@@ -49,7 +55,7 @@ onmessage = (e) => {
         wLog('log', 'Making request to ratings server.')
         const request = syncJSONRequest({
           type: 'POST',
-          url: 'https://liaronce.top/createuser',
+          url: RatingAPI + '/createuser',
           headers: jsonHeader,
           body: JSON.stringify({
             username: e.data.args.username,
@@ -73,7 +79,7 @@ onmessage = (e) => {
         wLog('log', 'Making request to ratings server.')
         const request = syncJSONRequest({
           type: 'POST',
-          url: 'https://liaronce.top/checkuser',
+          url: RatingAPI + '/checkuser',
           headers: jsonHeader,
           body: JSON.stringify({
             username: e.data.args.username,
@@ -106,7 +112,7 @@ onmessage = (e) => {
         wLog('log', 'Making request to ratings server.')
         const request = syncJSONRequest({
           type: 'POST',
-          url: 'https://liaronce.top/ratings/' + e.data.args.appid + '/add',
+          url: RatingAPI + '/ratings/' + e.data.args.appid + '/add',
           headers: jsonHeader,
           body: JSON.stringify({
             username: e.data.args.username,
@@ -134,7 +140,7 @@ onmessage = (e) => {
         wLog('log', 'Making request to ratings server.')
         const request = syncJSONRequest({
           type: 'GET',
-          url: 'https://liaronce.top/ratings/' + e.data.args.appid,
+          url: RatingAPI + '/ratings/' + e.data.args.appid,
           headers: fixedHeaders
         })
         if (request.success) {
