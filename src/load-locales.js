@@ -15,15 +15,7 @@ lang.init({
 
 function changeLocales(locale) {
     lang.change(locale);
-    // if (lang.currentLang !== locale) {
-    //     lang.change(locale);
-    // }
+    Cookies.set('categoryLocale', locale, { expires: 365 })
     reloadData();
-    return false;
-}
-
-function changeLocalesWithURL() {
-    lang.change(getQueryVariable('locale'));
-    // reloadData();
     return false;
 }
