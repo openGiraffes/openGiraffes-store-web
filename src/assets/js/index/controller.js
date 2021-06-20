@@ -851,7 +851,7 @@ function reloadData () {
 
       newCategoryTab.link.content.text.innerText = ""
       
-      if (Cookies.get('categoryLocale') === "en" || !Cookies.get('categoryLocale')) {
+      if (Cookies.get('categoryLocale') === 'en' || !Cookies.get('categoryLocale') || lang.currentLang === 'en') {
         newCategoryTab.link.content.text.innerText = data.categories[category].name
       } else if (Cookies.get('categoryLocale') === lang.currentLang) {
         newCategoryTab.link.content.text.innerText = data.categories[category].locales[0][lang.currentLang]
