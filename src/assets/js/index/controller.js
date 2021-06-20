@@ -295,6 +295,9 @@ appCardsContainerElement.onclick = function (e) {
         }
 
         if (appDetails.description) {
+          if (appDetails.fromstore === true) {
+            appDetailsModal.content.description.innerText += window.lang.translate('fromstore-notice') + '\n'
+          }
           appDetailsModal.content.description.innerText = appDetails.description
         } else {
           appDetailsModal.content.description.innerText = 'No description.'
