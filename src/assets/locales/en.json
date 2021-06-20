@@ -67,6 +67,6 @@
         "data-load-error": "Data could not be loaded! Check the console for more info.",
         "app-sort-success": "Apps sorted successfully!",
         "app-sort-error": "Apps could not be sorted! Check the console for more info.",
-        "fromstore-notice": "Due to the need to access KaiAds to be allowed to launch KaiStore, the Ads and Tracking properties of most apps from KaiStore are set to \"true\" by default."
+        "fromstore-notice": "Due to the need to access KaiAds to be allowed to launch KaiStore, the Ads and Tracking properties of most apps from KaiStore are set to \"true\" by default. At the same time, the app may not be up to date."
     }
 }
