@@ -67,6 +67,6 @@
         "data-load-error": "数据加载失败！请检查控制台输出以获取更多信息。",
         "app-sort-success": "应用排序成功!",
         "app-sort-error": "应用排序失败！请检查控制台输出以获取更多信息。",
-        "fromstore-notice": "由于需要接入 KaiAds 才会被允许上架 KaiStore，大多数来自 KaiStore 的 App 的 广告 和 跟踪 属性将默认为 true。同时 App 也有可能不是最新。"
+        "fromstore-notice": "由于需要接入 KaiAds 才会被允许上架 KaiStore，大多数来自 KaiStore 的 App 的 广告 和 跟踪 属性将默认为 true。同时由于应用多数为我们自行转载，App 也有可能不是最新版本。"
     }
 }
