@@ -427,7 +427,7 @@ appCardsContainerElement.onclick = function (e) {
           appDownloadsModal.buttons.download.setAttribute('data-app-appid', appDetails.slug)
           getZipfileSize(appDetails.download.url)
           appDownloadsModal.content.qrcode.innerHTML = ''
-          new QRCode(appDownloadsModal.content.qrcode, 'openkaios:' + appDetails.slug)
+          new QRCode(appDownloadsModal.content.qrcode, 'openGiraffes:' + appDetails.slug)
         } else {
           appDetailsModal.buttons.download.classList.add('is-hidden')
           appDownloadsModal.buttons.download.classList.add('is-hidden')
@@ -550,7 +550,7 @@ function addAppCard (appDetails) {
       navigator.share({
         title: appDetails.name,
         text: appDetails.description,
-        url: 'https://store.openkaios.top/#' + appDetails.slug
+        url: 'https://store.opengiraffes.top/#' + appDetails.slug
       }).then(function () {
         console.log(`[Index Controller] Shared app '${appDetails.slug}' successfully.`)
       }).catch(function (err) {
@@ -564,7 +564,7 @@ function addAppCard (appDetails) {
     cardFooter_ShareApp.setAttribute('lang', 'en')
     cardFooter_ShareApp.innerText = window.lang.translate('copy-app')
     cardFooter_ShareApp.onclick = function () {
-      navigator.clipboard.writeText('https://store.openkaios.top/#' + appDetails.slug).then(function () {
+      navigator.clipboard.writeText('https://store.opengiraffes.top/#' + appDetails.slug).then(function () {
         console.log(`[Index Controller] Copied app '${appDetails.slug}' to clipboard successfully.`)
       }).catch(function (err) {
         console.error(`[Index Controller] Could not copy app '${appDetails.slug}' to clipboard: ` + err)
@@ -884,7 +884,7 @@ function reloadData () {
       githubCommitWorker.terminate()
       if (e.data !== null) {
         githubCommitLabel.innerText = e.data.substring(0, 7)
-        githubCommitLabel.setAttribute('href', 'https://github.com/openkaios/openkaios-store-web/blob/' + e.data + '/src/')
+        githubCommitLabel.setAttribute('href', 'https://github.com/openGiraffes/openGiraffes-store-web/blob/' + e.data + '/src/')
         githubCommitLabel.classList.remove('is-danger')
         githubCommitLabel.classList.add('is-success')
 

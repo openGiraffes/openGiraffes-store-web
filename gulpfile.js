@@ -44,7 +44,7 @@ const FPATHS = {
     dest: BUILD_FOLDER + 'assets/locales/'
   },
   manifest: {
-    src: SOURCE_FOLDER + 'openkaios.webmanifest',
+    src: SOURCE_FOLDER + 'opengiraffes.webmanifest',
     dest: BUILD_FOLDER
   },
   custom_info: {
@@ -122,7 +122,7 @@ function manifestTask () {
   return src(FPATHS.manifest.src)
     .pipe(plumber({ errorHandler: onErr }))
     .pipe(minifyJSON())
-    .pipe(rename('openkaios.webmanifest'))
+    .pipe(rename('opengiraffes.webmanifest'))
     .pipe(plumber.stop())
     .pipe(dest(FPATHS.manifest.dest))
 }

@@ -1,7 +1,7 @@
 {
-  "name": "openKaiOS WebStore",
-  "short_name": "openKaiOS Store",
-  "description": "Web client for openKaiOS store-db.",
+  "name": "openGiraffes WebStore",
+  "short_name": "openGiraffes Store",
+  "description": "Web client for openGiraffes store-db.",
   "display": "standalone",
   "icons": [
     {

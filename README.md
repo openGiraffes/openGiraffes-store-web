@@ -1,7 +1,7 @@
 # webstore
-Web client for openKaiOS Store
+Web client for openGiraffes Store
 
-![shields.io Last Commit badge](https://img.shields.io/github/last-commit/openkaios/openkaios-store-web)
+![shields.io Last Commit badge](https://img.shields.io/github/last-commit/openGiraffes/openGiraffes-store-web)
 
 ## Building
 

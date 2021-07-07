@@ -4,8 +4,8 @@ const WORKER_NAME = 'Store'
 
 importScripts('common.js')
 
-const openkaios = [
-  "https://storedb.openkaios.top/data.json"
+const opengiraffes = [
+  "https://storedb.opengiraffes.top/data.json"
 ]
 
 const bhackers = [
@@ -13,13 +13,13 @@ const bhackers = [
   "https://bananahackers.github.io/store-db/data.json"
 ]
 
-let stores = openkaios
+let stores = opengiraffes
 
 // onmessage = (event) =>{
 //   stores = event.data
 // }
 
-const openkaiosCounter = [
+const opengiraffesCounter = [
   "https://liaronce.top/download_counter/"
 ]
 
@@ -27,7 +27,7 @@ const bhackersCounter = [
   "https://bhackers.uber.space/srs/v1/download_counter/"
 ]
 
-const downloadCounters = openkaiosCounter
+const downloadCounters = opengiraffesCounter
 
 onmessage = function () {
   wLog('log', 'Store worker started.')

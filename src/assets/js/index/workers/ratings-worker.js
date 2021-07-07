@@ -4,9 +4,9 @@ importScripts('common.js')
 
 const bHackerRating = 'https://bhackers.uber.space/srs/v1'
 
-const openkaiosRating = 'https://liaronce.top'
+const opengiraffesRating = 'https://liaronce.top'
 
-const RatingAPI = openkaiosRating
+const RatingAPI = opengiraffesRating
 
 const jsonHeader = {
   'Content-Type': 'application/json'
