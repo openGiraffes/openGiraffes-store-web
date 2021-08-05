@@ -1,5 +1,7 @@
 addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request).catch((err) => { return new Response(err.message) }))
+    event.respondWith(handleRequest(event.request).catch((err) => {
+        return new Response(err.message)
+    }))
 })
 
 const html = `
@@ -47,23 +49,43 @@ async function handleRequest(request) {
         })
     }
     let req_url = new URL(request.url);
-    if (req_url.pathname.startsWith('/ajax/')) {//ajax
+    if (req_url.pathname.startsWith('/ajax/')) { //ajax
         let url = req_url.pathname.slice(6).replace(/^(https?):\/+/, '$1://');
         if (!url) return new Response("Only For Ajax");
-        let res = await fetch(url, { method: request.method, headers: request.headers, body: request.body });
+        let res = await fetch(url, {
+            method: request.method,
+            headers: request.headers,
+            body: request.body
+        });
         let h = new Headers(res.headers);
         h.set('access-control-allow-origin', '*');
         h.set('access-control-expose-headers', '*');
-        return new Response(res.body, { status: res.status, headers: h });
-    } else if (req_url.pathname === '/') {//download
+        return new Response(res.body, {
+            status: res.status,
+            headers: h
+        });
+    } else if (req_url.pathname === '/') { //download
         let url = req_url.searchParams.get('url');
-        if (!url) return new Response(html, { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+        if (!url) return new Response(html, {
+            status: 200,
+            headers: {
+                'Content-Type': 'text/html; charset=utf-8'
+            }
+        });
         let res;
         let type;
         if (request.headers.get('Range')) {
-            res = await fetch(url, { headers: { 'Range': request.headers.get('Range') } });
+            res = await fetch(url, {
+                headers: {
+                    'Range': request.headers.get('Range')
+                }
+            });
         } else {
-            res = await fetch(url, { method: request.method, headers: request.headers, body: request.body });
+            res = await fetch(url, {
+                method: request.method,
+                headers: request.headers,
+                body: request.body
+            });
         }
         let h = new Headers(res.headers);
         h.set('set-cookie', '');
@@ -73,8 +95,34 @@ async function handleRequest(request) {
             status: res.status,
             headers: h,
         })
+    } else if (req_url.pathname === '/manifest') {
+        let url = req_url.searchParams.get('url');
+        if (!url) return new Response(html, {
+            status: 200,
+            headers: {
+                'Content-Type': 'text/html; charset=utf-8'
+            }
+        });
+        let res = await fetch(url, {
+            method: request.method,
+            headers: request.headers,
+            body: request.body
+        });
+        return new Response(JSON.stringify(await res.json()), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/x-web-app-manifest+json',
+                'access-control-allow-origin': '*',
+                'access-control-expose-headers': '*',
+            },
+        })
     } else {
-        return new Response("400 --", { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+        return new Response("400 --", {
+            status: 400,
+            headers: {
+                'Content-Type': 'text/html; charset=utf-8'
+            }
+        });
     }
 }
 
