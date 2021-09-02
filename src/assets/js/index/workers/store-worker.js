@@ -20,7 +20,7 @@ let stores = opengiraffes
 // }
 
 const opengiraffesCounter = [
-  "https://liaronce.top/download_counter/"
+  "https://opengiraffes-rating.herokuapp.com/download_counter/"
 ]
 
 const bhackersCounter = [

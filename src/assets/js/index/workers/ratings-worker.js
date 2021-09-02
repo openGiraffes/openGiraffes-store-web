@@ -4,7 +4,7 @@ importScripts('common.js')
 
 const bHackerRating = 'https://bhackers.uber.space/srs/v1'
 
-const opengiraffesRating = 'https://liaronce.top'
+const opengiraffesRating = 'https://opengiraffes-rating.herokuapp.com'
 
 const RatingAPI = opengiraffesRating
 
