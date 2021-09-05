@@ -1,22 +1,10 @@
-const WORKER_NAME = 'Sort'
+'use strict'
 
-importScripts('common.js')
-
-onmessage = function (e) {
-  wLog('log', 'Sort worker started.')
-  const sortData = {
-    apps: [],
-    sort: null
-  }
-  if (typeof e.data.apps !== 'object' || typeof e.data.sort !== 'string') {
-    wLog('error', 'Missing arguments for sort worker. Sending back empty data.')
-    postMessage(sortData)
-  }
-  wLog('log', 'Sorting using "' + e.data.sort + '" sort.')
-  const copyApps = Object.entries(e.data.apps)
+onmessage = (e) => {
+  const copyApps = Object.entries(e.data.apps);
   switch (e.data.sort) {
     case 'alphabetical':
-      copyApps.sort(function (a, b) {
+      copyApps.sort((a, b) => {
         const A = a[1].name.toUpperCase()
         const B = b[1].name.toUpperCase()
         if (A > B) {
@@ -30,7 +18,7 @@ onmessage = function (e) {
       break
     case 'popularity':
       if (e.data.downloadCounts) {
-        copyApps.sort(function (a, b) {
+        copyApps.sort((a, b) => {
           const A = e.data.downloadCounts[a[1].slug]
           const B = e.data.downloadCounts[b[1].slug]
           if (A > B) {
@@ -42,11 +30,11 @@ onmessage = function (e) {
           }
         })
       } else {
-        wLog('error', 'Missing downloadCounts to sort by popularity!')
+        console.warn("Not sorting!")
       }
       break
     case 'categorical':
-      copyApps.sort(function (a, b) {
+      copyApps.sort((a, b) => {
         const A = a[1].meta.categories[0].toUpperCase()
         const B = b[1].meta.categories[0].toUpperCase()
         if (A > B) {
@@ -59,6 +47,26 @@ onmessage = function (e) {
       })
       break
     case 'ratings':
+      if (e.data.ratings) {
+        copyApps.sort((a, b) => {
+          const A = e.data.ratings[a[1].slug]
+          const B = e.data.ratings[b[1].slug]
+
+          if (A && B) {
+            if (A.average_rating > B.average_rating) {
+              return -1
+            } else if (A.average_rating < B.average_rating) { 
+              return 1
+            } else {
+              return 0
+            }
+          } else {
+            return 0;
+          }
+        })
+      } else {
+        console.warn("Not sorting!");
+      }
       break
     default:
       break
@@ -67,7 +75,5 @@ onmessage = function (e) {
   for (const app of copyApps) {
     finalSorted[app[0]] = app[1]
   }
-  sortData.apps = finalSorted
-  wLog('log', 'Sort worker completed!')
-  postMessage(sortData)
+  postMessage(finalSorted);
 }
