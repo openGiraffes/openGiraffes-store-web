@@ -18,6 +18,8 @@ bulmaToast.setDefaults({
   }
 });
 
+// Init Multi-databases API
+const MultiDB = new MultiDatabases();
 // StoreDbAPI class init.
 const StoreDbAPI = new StoreDatabaseAPI();
 // Relative time class init.

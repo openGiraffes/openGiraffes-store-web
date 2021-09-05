@@ -1,11 +1,7 @@
 class StoreDatabaseAPI {
   constructor () {
-    this.stores = [
-      "https://storedb.opengiraffes.top/data.json"
-    ];
-    this.ratingServers = [
-      "https://opengiraffes-rating.herokuapp.com"
-    ];
+    this.stores = JSON.parse(window.localStorage.getItem("DatabaseURLs"));
+    this.ratingServers = JSON.parse(window.localStorage.getItem("RatingServers"));
     this.currentStore = {
       index: 0,
       url: this.stores[0]
