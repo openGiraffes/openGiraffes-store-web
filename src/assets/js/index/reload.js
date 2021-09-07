@@ -23,6 +23,8 @@ async function reloadData () {
     await StoreDbAPI.loadDb();
 
     for (const category in StoreDbAPI.db.categories) {
+      // Initialize localized entries for categories from store-db.
+      // This can solve the problem of categories not following changes when switching localization.
       let categoryName;
       let currentLng = window.localStorage.getItem("i18nextLng");
       if (!StoreDbAPI.db.categories[category].locales || currentLng === "en") {
@@ -30,6 +32,7 @@ async function reloadData () {
       } else {
         categoryName = StoreDbAPI.db.categories[category].locales[0][currentLng];
       };
+      // End
       let categoryTabHTML = `
         <li class="category-tab" data-category-id="${category}">
           <a class="category-tab" data-category-id="${category}">
