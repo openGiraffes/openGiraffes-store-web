@@ -10,7 +10,7 @@ const html = `
   <input type="submit" id="submit" value="submit"/>
   <div id="res"></div>
   <a id="a" href=""></a>
-  <div>注:该工具只针对直链有效</div>
+  <div>Note: This tool is only for direct URL links</div>
   <script>
   document.getElementById('submit').onclick=function(){
       let url  = document.getElementById('url').value;
@@ -18,7 +18,7 @@ const html = `
       let a = document.getElementById('a');
       let div = document.getElementById('res');
       if(!url || !url.startsWith('http')){
-          div.textContent="链接不合法: "+url;
+          div.textContent="Link is illegal: "+url;
           a.style="display:none";
       }else{
           div.textContent="";
