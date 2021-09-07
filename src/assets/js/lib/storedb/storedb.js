@@ -1,5 +1,9 @@
 class StoreDatabaseAPI {
   constructor () {
+    /** Moved to loadDB() */
+  }
+
+  async loadDb () {
     this.stores = JSON.parse(window.localStorage.getItem("DatabaseURLs"));
     this.ratingServers = JSON.parse(window.localStorage.getItem("RatingServers"));
     this.currentStore = {
@@ -24,15 +28,13 @@ class StoreDatabaseAPI {
       },
       generatedAt: null
     };
-  }
-
-  async loadDb () {
     for (const storeURL of this.stores) {
       const rawDb = await fetch(storeURL);
       if (!rawDb.ok) continue;
 
       this.currentStore.index = this.stores.indexOf(storeURL);
       this.currentStore.url = storeURL;
+      console.log(storeURL);
       const parsedDb = await rawDb.json();
 
       if (![2, 3].includes(parsedDb.version)) continue;
