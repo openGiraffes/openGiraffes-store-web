@@ -46,10 +46,6 @@ const appDetailsModal = {
   }
 }
 
-const requestOptions = {
-  mode: 'no-cors'
-}
-
 async function reloadAppRatings (appID) {
   appDetailsModal.content.ratings.loggedIn.details.innerHTML = '<strong>@?</strong>';
   appDetailsModal.content.ratings.loggedIn.points.value = 1;
@@ -224,7 +220,7 @@ function setAppDetailsModalDetails (appDetails) {
     appDetailsModal.content.version.innerText = appDetails.download.version
   } else if (appDetails.download.manifest) {
     appDetailsModal.content.version.innerText = "..."
-    fetch(`https://kaios.tri1.workers.dev?url=${appDetails.download.manifest}`, requestOptions).then(async response => {
+    fetch(`https://kaios.tri1.workers.dev?url=${appDetails.download.manifest}`).then(async response => {
       if (response.ok) {
         const manifest = await response.json();
         if (manifest.version) {
