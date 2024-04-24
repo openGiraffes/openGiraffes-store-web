@@ -1,5 +1,5 @@
 const requestOptions = {
-  mode: 'cors'
+  mode: 'no-cors'
 }
 
 class StoreDatabaseAPI {
