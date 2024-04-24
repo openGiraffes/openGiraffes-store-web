@@ -49,10 +49,6 @@ const FPATHS = {
   manifest: {
     src: SOURCE_FOLDER + 'opengiraffes.webmanifest',
     dest: BUILD_FOLDER
-  },
-  cname: {
-    src: SOURCE_FOLDER + 'CNAME.txt',
-    dest: BUILD_FOLDER
   }
 }
 
@@ -110,17 +106,11 @@ function manifestTask () {
     .pipe(dest(FPATHS.manifest.dest))
 }
 
-function cnameTask () {
-  return src(FPATHS.cname.src)
-    .pipe(rename('CNAME'))
-    .pipe(dest(FPATHS.cname.dest))
-}
-
 function cleanBuildAll () {
-  return rm([BUILD_FOLDER + '*', '!' + BUILD_FOLDER + 'CNAME'])
+  return rm([BUILD_FOLDER + '*'])
 }
 
-const DEFAULT_BUILD_TASKS = parallel(jsTask, jsMinTask, cssTask, cssMinTask, htmlTask, iconsTask, logosTask, localesTask, manifestTask, cnameTask)
+const DEFAULT_BUILD_TASKS = parallel(jsTask, jsMinTask, cssTask, cssMinTask, htmlTask, iconsTask, logosTask, localesTask, manifestTask)
 
 exports.clean = cleanBuildAll
 
