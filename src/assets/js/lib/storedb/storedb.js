@@ -1,3 +1,7 @@
+const requestOptions = {
+  mode: 'no-cors'
+}
+
 class StoreDatabaseAPI {
   constructor () {
     /** Moved to loadDB() */
@@ -29,7 +33,7 @@ class StoreDatabaseAPI {
       generatedAt: null
     };
     for (const storeURL of this.stores) {
-      const rawDb = await fetch(storeURL);
+      const rawDb = await fetch(storeURL, requestOptions);
       if (!rawDb.ok) continue;
 
       this.currentStore.index = this.stores.indexOf(storeURL);
