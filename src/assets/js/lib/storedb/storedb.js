@@ -1,8 +1,8 @@
 const requestOptions = {
-  headers: new Headers({
-      'access-control-allow-origin': '*',
-      'access-control-allow-methods': 'GET,POST,PUT,PATCH,TRACE,DELETE,HEAD,OPTIONS'
-  }),
+  // headers: new Headers({
+  //     'access-control-allow-origin': '*',
+  //     'access-control-allow-methods': 'GET,POST,PUT,PATCH,TRACE,DELETE,HEAD,OPTIONS'
+  // }),
 }
 
 class StoreDatabaseAPI {
